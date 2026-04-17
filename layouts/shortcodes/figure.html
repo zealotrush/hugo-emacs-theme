@@ -1,0 +1,9 @@
+{{- $src := .Get "src" -}}
+{{- $width := .Get "width" -}}
+{{- $height := .Get "height" -}}
+{{- $alt := .Get "alt" -}}
+{{- $caption := .Get "caption" -}}
+<figure{{ with $width }} style="width: {{ . }}"{{ end }}>
+  <img src="{{ $src | relURL }}"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }}{{ with $alt }} alt="{{ . }}"{{ end }}>
+  {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
