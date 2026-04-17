@@ -33,14 +33,14 @@
 
 {{- /* Open Graph / Twitter */ -}}
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . | plainify | truncate 160 }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .Summary }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-{{ with .Params.images -}}
-<meta property="og:image" content="{{ index . 0 | absURL }}">
-{{- else with .Site.Params.images -}}
-<meta property="og:image" content="{{ index . 0 | absURL }}">
-{{- end }}
+{{ if .Params.images }}
+<meta property="og:image" content="{{ index .Params.images 0 | absURL }}">
+{{ else if .Site.Params.images }}
+<meta property="og:image" content="{{ index .Site.Params.images 0 | absURL }}">
+{{ end }}
 <meta name="twitter:card" content="summary_large_image">
 
 {{- /* CSS - Combined and minified */ -}}
