@@ -6,13 +6,13 @@
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
 {{- /* Meta description */ -}}
-{{ with .Description -}}
-<meta name="description" content="{{ . }}">
-{{- else with .Summary -}}
-<meta name="description" content="{{ . | plainify | truncate 160 }}">
-{{- else with .Site.Params.description -}}
-<meta name="description" content="{{ . }}">
-{{- end }}
+{{ if .Description }}
+<meta name="description" content="{{ .Description }}">
+{{ else if .Summary }}
+<meta name="description" content="{{ .Summary | plainify | truncate 160 }}">
+{{ else if .Site.Params.description }}
+<meta name="description" content="{{ .Site.Params.description }}">
+{{ end }}
 
 {{- /* Author */ -}}
 {{ with .Site.Params.author -}}
