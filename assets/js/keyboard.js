@@ -419,6 +419,18 @@
     articleContent.innerHTML = '';
     articleContent.appendChild(content);
 
+    // Render KaTeX math if available
+    if (typeof renderMathInElement !== 'undefined') {
+      renderMathInElement(articleContent, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      });
+    }
+
     // Update content buffer modeline
     const modeline = bufferContent?.querySelector('.modeline');
     if (modeline) {
