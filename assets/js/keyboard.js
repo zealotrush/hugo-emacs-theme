@@ -419,6 +419,16 @@
     articleContent.innerHTML = '';
     articleContent.appendChild(content);
 
+    // Fix relative image paths for dynamically loaded content
+    const basePath = window.location.pathname.replace(/\/$/, '');
+    const imgTags = articleContent.querySelectorAll('img');
+    imgTags.forEach(img => {
+      const src = img.getAttribute('src');
+      if (src && !src.startsWith('/') && !src.startsWith('http')) {
+        img.setAttribute('src', basePath + '/' + src);
+      }
+    });
+
     // Render KaTeX math if available
     if (typeof renderMathInElement !== 'undefined') {
       renderMathInElement(articleContent, {
