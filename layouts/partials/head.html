@@ -56,10 +56,10 @@
 {{- $allCSS := slice $themes $main $menuBar $windows $modeline $echoArea $syntax $mobile | resources.Concat "css/bundle.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $allCSS.RelPermalink }}" integrity="{{ $allCSS.Data.Integrity }}">
 
-{{- /* Google Fonts - Noto Sans Mono SC for Chinese */ -}}
+{{- /* Google Fonts - Noto Sans SC for Chinese */ -}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono+SC:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
 
 {{- /* Katex for math rendering */ -}}
 {{ if or .Params.math .Site.Params.math }}
