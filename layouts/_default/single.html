@@ -57,7 +57,7 @@
   </div>
   
   {{ partial "modeline.html" (dict 
-    "buffer" (printf "%s.org" .File.BaseFileName)
+    "buffer" .Title
     "mode" "Org"
     "readonly" true
     "keyhint" "<kbd>q</kbd> back to posts"
