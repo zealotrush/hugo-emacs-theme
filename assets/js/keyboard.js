@@ -1261,9 +1261,16 @@
     // Initialize selection and modeline
     updateListModeline();
     
-    // Set initial focus based on page type
-    // List page: focus list buffer. Single post page: focus content buffer
-    focusBuffer(postsData ? 'list' : 'content');
+    // Set initial focus based on which buffer is active in the DOM
+    // Check content buffer first (single post page), then list (list page)
+    if (bufferContent?.classList.contains('active')) {
+      focusBuffer('content');
+    } else if (bufferList?.classList.contains('active')) {
+      focusBuffer('list');
+    } else {
+      // Fallback: postsData exists = list page, otherwise single post page
+      focusBuffer(postsData ? 'list' : 'content');
+    }
 
     // Set initial echo area message
     updateEchoHint();
