@@ -423,11 +423,8 @@
     const imgTags = articleContent.querySelectorAll('img');
     imgTags.forEach(img => {
       const src = img.getAttribute('src');
-      console.log('Image src before:', src);
       if (src && !src.startsWith('/') && !src.startsWith('http')) {
-        const newSrc = '/' + src.replace(/^\.\//, '');
-        img.setAttribute('src', newSrc);
-        console.log('Image src after:', newSrc);
+        img.setAttribute('src', '/' + src.replace(/^\.\//, ''));
       }
     });
 
