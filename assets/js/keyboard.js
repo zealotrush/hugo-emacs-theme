@@ -1120,6 +1120,12 @@
           e.preventDefault();
         }
         break;
+      case '0':
+        if (!ctrl && !meta) {
+          window.resetFontSize?.();
+          e.preventDefault();
+        }
+        break;
     }
   }
 
