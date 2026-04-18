@@ -15,7 +15,6 @@
           {{- if .Date -}}
           <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
           {{- end -}}
-          <span class="post-reading-time">{{ .ReadingTime }} min read ({{ .WordCount }} words)</span>
           {{- with .Params.tags }}
           <div class="post-tags">
             {{- range . }}

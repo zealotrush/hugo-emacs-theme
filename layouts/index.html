@@ -11,20 +11,14 @@
     <ul class="article-list" id="article-list" role="listbox" aria-label="Articles">
       {{- $posts := where .Site.RegularPages "Section" "post" -}}
       {{- range $index, $post := $posts.ByDate.Reverse -}}
-      <li class="article-item{{ if eq $index 0 }} selected{{ end }}" 
-          role="option"
-          aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}"
+<li class="article-item{{ if eq $index 0 }} selected{{ end }}" 
           data-index="{{ $index }}"
           data-url="{{ $post.RelPermalink }}"
           data-title="{{ $post.Title }}"
-          data-date="{{ $post.Date.Format "2006-01-02" }}"
-          data-reading-time="{{ $post.ReadingTime }}"
-          data-word-count="{{ $post.WordCount }}">
+          data-date="{{ $post.Date.Format "2006-01-02" }}">
         <a href="{{ $post.RelPermalink }}" class="article-link">
           <span class="article-marker" aria-hidden="true">{{ if eq $index 0 }}>{{ else }} {{ end }}</span>
           <span class="article-meta">
-            <span class="article-reading-time" title="Reading time">{{ $post.ReadingTime }}min</span>
-            <span class="article-word-count" title="Word count">{{ $post.WordCount | lang.FormatNumber 0 }}</span>
             <span class="article-date">{{ $post.Date.Format "2006-01-02" }}</span>
           </span>
           <span class="article-title">{{ $post.Title }}</span>
@@ -75,7 +69,6 @@
       <h1 class="post-title">{{ $post.Title }}</h1>
       <div class="post-meta">
         <span class="post-date">{{ $post.Date.Format "2006-01-02" }}</span>
-        <span class="post-reading-time">{{ $post.ReadingTime }} min read ({{ $post.WordCount }} words)</span>
         {{- with $post.Params.tags }}
         <div class="post-tags">
           {{- range . }}
