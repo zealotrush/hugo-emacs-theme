@@ -1261,8 +1261,9 @@
     // Initialize selection and modeline
     updateListModeline();
     
-    // Set initial focus
-    focusBuffer('list');
+    // Set initial focus based on page type
+    // List page: focus list buffer. Single post page: focus content buffer
+    focusBuffer(postsData ? 'list' : 'content');
 
     // Set initial echo area message
     updateEchoHint();
