@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: 'Fira Code', 'Noto Sans Mono SC', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.95rem;
   line-height: 1.6;
   background-color: var(--bg-main);
