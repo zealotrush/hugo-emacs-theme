@@ -512,13 +512,9 @@
    * Go back to list buffer
    */
   function goBack() {
-    // On single.html pages, navigate back
+    // On single.html pages, navigate to home
     if (!postsData) {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = '/';
-      }
+      window.location.href = '/';
       return;
     }
 
