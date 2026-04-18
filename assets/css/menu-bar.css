@@ -87,9 +87,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.4em 1em;
-  color: var(--menu-fg);
+  background: none;
+  border: none;
+  color: var(--menu-fg) !important;
   cursor: pointer;
   transition: background-color 0.1s ease;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
 }
 
 .menu-dropdown-item:hover {
