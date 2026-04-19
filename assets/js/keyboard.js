@@ -482,8 +482,11 @@
       // Get all links in the navigation
       const links = Array.from(nav.querySelectorAll('a[href*="/posts/"]'));
       
-      // For p (direction < 0): use first link (left, previous)
-      // For n (direction > 0): use last link (right, next)
+      // On single post page:
+      // Left link (first in DOM) = next (older) post
+      // Right link (last in DOM) = previous (newer) post
+      // So: p (direction < 0) should use first link (go to older)
+      //     n (direction > 0) should use last link (go to newer)
       let link = direction < 0 ? links[0] : links[links.length - 1];
       
       if (link) {
