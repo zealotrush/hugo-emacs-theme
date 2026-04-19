@@ -489,15 +489,16 @@
       if (link) {
         // Get the href attribute
         const href = link.getAttribute('href');
+        console.log('link href:', href);
         if (href) {
           // Hard-code the correct path based on href pattern
           // href like "../../posts/xyz/" -> "/posts/xyz/"
-          if (href.includes('/posts/')) {
-            const match = href.match(/(\/posts\/[^/]+)/);
-            if (match) {
-              window.location.href = match[1] + '/';
-              return;
-            }
+          const match = href.match(/posts\/([^/]+)/);
+          console.log('match:', match);
+          if (match) {
+            window.location.href = '/posts/' + match[1] + '/';
+            console.log('navigating to:', '/posts/' + match[1] + '/');
+            return;
           }
         }
       }
