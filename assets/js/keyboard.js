@@ -487,23 +487,8 @@
       let link = direction < 0 ? links[0] : links[links.length - 1];
       
       if (link) {
-        // Get the href attribute
-        const href = link.getAttribute('href');
-        console.log('link href:', href);
-        if (href) {
-          // Extract post name from href using regex
-          const match = href.match(/posts\/([^/]+)/);
-          console.log('match:', match);
-          if (match) {
-            // Build full URL with origin
-            const baseUrl = window.location.origin;
-            const targetPath = '/posts/' + match[1] + '/';
-            const fullUrl = baseUrl + targetPath;
-            console.log('navigating to:', fullUrl);
-            window.location.href = fullUrl;
-            return;
-          }
-        }
+        window.location.href = link.getAttribute('href');
+        return;
       }
       
       // No link available in that direction
