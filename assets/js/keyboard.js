@@ -483,11 +483,19 @@
       const links = Array.from(nav.querySelectorAll('a[href*="/posts/"]'));
       
       // On single post page:
-      // Left link (first in DOM) = next (older) post
-      // Right link (last in DOM) = previous (newer) post
-      // So: p (direction < 0) should use first link (go to older)
-      //     n (direction > 0) should use last link (go to newer)
-      let link = direction < 0 ? links[0] : links[links.length - 1];
+      // Left link (PrevInSection) = older post
+      // Right link (NextInSection) = newer post
+      // n (direction > 0) = go to older post = use left link (index 0)
+      // p (direction < 0) = go to newer post = use right link (index 1)
+      
+      let link;
+      if (direction > 0) {
+        // n - go to older post (left link)
+        link = links[0];
+      } else {
+        // p - go to newer post (right link)
+        link = links.length > 1 ? links[1] : null;
+      }
       
       if (link) {
         window.location.href = link.getAttribute('href');
