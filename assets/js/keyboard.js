@@ -792,8 +792,7 @@
 
     // Handle C-x prefix sequences (Emacs)
     if (keySequence === 'C-x') {
-      const seqKey = e.shiftKey ? key.toUpperCase() : key.toLowerCase();
-      if (handleKeySequence(seqKey)) {
+      if (handleKeySequence(key)) {
         e.preventDefault();
         return;
       }
