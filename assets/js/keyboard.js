@@ -479,28 +479,28 @@
       const nav = document.querySelector('.post-navigation');
       if (!nav) return;
       
+      // Get all links in the navigation
       const links = Array.from(nav.querySelectorAll('a[href*="/posts/"]'));
       
-      // Get the left and right links from the navigation
-      // Left link is typically previous, right link is next
-      const leftLink = nav.querySelector('a:first-child');
-      const rightLink = nav.querySelector('a:last-child');
-      
-      // For p (direction < 0): use left link (previous)
-      // For n (direction > 0): use right link (next)
-      let link;
-      if (direction < 0 && leftLink) {
-        link = leftLink;
-      } else if (direction > 0 && rightLink) {
-        link = rightLink;
-      }
+      // For p (direction < 0): use first link (left, previous)
+      // For n (direction > 0): use last link (right, next)
+      let link = direction < 0 ? links[0] : links[links.length - 1];
       
       if (link) {
-        // Use anchor element to properly resolve relative URL
-        const a = document.createElement('a');
-        a.href = link.getAttribute('href');
-        window.location.href = a.href;
-        return;
+        // Get the href attribute and resolve relative to current location pathname
+        const href = link.getAttribute('href');
+        if (href) {
+          // Create absolute URL from current path
+          const currentPath = window.location.pathname;
+          const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+          let absolutePath = new URL(href, basePath).pathname;
+          
+          // Remove any trailing slashes for consistency
+          absolutePath = absolutePath.replace(/\/$/, '');
+          
+          window.location.href = absolutePath;
+          return;
+        }
       }
       
       // No link available in that direction
