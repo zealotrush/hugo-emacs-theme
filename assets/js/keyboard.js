@@ -483,7 +483,9 @@
       const link = direction > 0 ? links[links.length - 1] : links[0];
       
       if (link) {
-        window.location.href = link.href;
+        // Convert relative URL to absolute
+        const url = new URL(link.href, window.location.origin).href;
+        window.location.href = url;
         return;
       }
       return;
