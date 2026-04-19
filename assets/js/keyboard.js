@@ -473,6 +473,22 @@
    */
   function navigateArticle(direction) {
     const items = getArticleItems();
+    
+    // On single post page (no postsData), use prev/next links in the page
+    if (!postsData && items.length === 0) {
+      const nav = document.querySelector('.post-navigation');
+      if (!nav) return;
+      
+      const links = Array.from(nav.querySelectorAll('a[href*="/posts/"]'));
+      const link = direction > 0 ? links[links.length - 1] : links[0];
+      
+      if (link) {
+        window.location.href = link.href;
+        return;
+      }
+      return;
+    }
+    
     if (items.length === 0) return;
 
     const newIndex = selectedIndex + direction;
