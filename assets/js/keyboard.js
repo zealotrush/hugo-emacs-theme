@@ -491,10 +491,14 @@
         const href = link.getAttribute('href');
         if (href) {
           // Handle relative URLs like ../../posts/xyz/
-          // Strip ../.. to get just /posts/xyz/
+          // Strip ../.. to get just posts/xyz/, then prepend /
           let resolvedPath = href;
           while (resolvedPath.startsWith('../')) {
             resolvedPath = resolvedPath.substring(3);
+          }
+          // Prepend / if not present
+          if (!resolvedPath.startsWith('/')) {
+            resolvedPath = '/' + resolvedPath;
           }
           window.location.href = resolvedPath;
           return;
