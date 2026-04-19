@@ -490,21 +490,15 @@
         // Get the href attribute
         const href = link.getAttribute('href');
         if (href) {
-          console.log('Original href:', href);
-          // Handle relative URLs like ../../posts/xyz/
-          // Strip ../.. to get just posts/xyz/, then prepend /
-          let resolvedPath = href;
-          while (resolvedPath.startsWith('../')) {
-            resolvedPath = resolvedPath.substring(3);
+          // Hard-code the correct path based on href pattern
+          // href like "../../posts/xyz/" -> "/posts/xyz/"
+          if (href.includes('/posts/')) {
+            const match = href.match(/(\/posts\/[^/]+)/);
+            if (match) {
+              window.location.href = match[1] + '/';
+              return;
+            }
           }
-          console.log('After strip:', resolvedPath);
-          // Prepend / if not present
-          if (!resolvedPath.startsWith('/')) {
-            resolvedPath = '/' + resolvedPath;
-          }
-          console.log('Final path:', resolvedPath);
-          window.location.href = resolvedPath;
-          return;
         }
       }
       
