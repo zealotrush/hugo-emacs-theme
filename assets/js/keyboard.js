@@ -792,7 +792,7 @@
 
     // Handle C-x prefix sequences (Emacs)
     if (keySequence === 'C-x') {
-      if (handleKeySequence(key)) {
+      if (handleKeySequence(key.toLowerCase())) {
         e.preventDefault();
         return;
       }
