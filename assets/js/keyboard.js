@@ -487,18 +487,16 @@
       let link = direction < 0 ? links[0] : links[links.length - 1];
       
       if (link) {
-        // Get the href attribute and resolve relative to current location pathname
+        // Get the href attribute
         const href = link.getAttribute('href');
         if (href) {
-          // Create absolute URL from current path
-          const currentPath = window.location.pathname;
-          const basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-          let absolutePath = new URL(href, basePath).pathname;
-          
-          // Remove any trailing slashes for consistency
-          absolutePath = absolutePath.replace(/\/$/, '');
-          
-          window.location.href = absolutePath;
+          // Handle relative URLs like ../../posts/xyz/
+          // Strip ../.. to get just /posts/xyz/
+          let resolvedPath = href;
+          while (resolvedPath.startsWith('../')) {
+            resolvedPath = resolvedPath.substring(3);
+          }
+          window.location.href = resolvedPath;
           return;
         }
       }
