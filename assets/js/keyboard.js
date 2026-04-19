@@ -480,7 +480,20 @@
       if (!nav) return;
       
       const links = Array.from(nav.querySelectorAll('a[href*="/posts/"]'));
-      const link = direction > 0 ? links[links.length - 1] : links[0];
+      
+      // Get the left and right links from the navigation
+      // Left link is typically previous, right link is next
+      const leftLink = nav.querySelector('a:first-child');
+      const rightLink = nav.querySelector('a:last-child');
+      
+      // For p (direction < 0): use left link (previous)
+      // For n (direction > 0): use right link (next)
+      let link;
+      if (direction < 0 && leftLink) {
+        link = leftLink;
+      } else if (direction > 0 && rightLink) {
+        link = rightLink;
+      }
       
       if (link) {
         // Use anchor element to properly resolve relative URL
@@ -489,6 +502,9 @@
         window.location.href = a.href;
         return;
       }
+      
+      // No link available in that direction
+      showMessage(direction > 0 ? 'End of buffer' : 'Beginning of buffer');
       return;
     }
     
