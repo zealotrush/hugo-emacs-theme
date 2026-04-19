@@ -495,11 +495,12 @@
           const match = href.match(/posts\/([^/]+)/);
           console.log('match:', match);
           if (match) {
-            // Build URL using a hidden anchor to resolve properly
-            const a = document.createElement('a');
-            a.href = '/posts/' + match[1] + '/';
-            console.log('navigating to:', a.href);
-            window.location.href = a.href;
+            // Build full URL with origin
+            const baseUrl = window.location.origin;
+            const targetPath = '/posts/' + match[1] + '/';
+            const fullUrl = baseUrl + targetPath;
+            console.log('navigating to:', fullUrl);
+            window.location.href = fullUrl;
             return;
           }
         }
