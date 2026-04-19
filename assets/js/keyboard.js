@@ -491,13 +491,14 @@
         const href = link.getAttribute('href');
         console.log('link href:', href);
         if (href) {
-          // Hard-code the correct path based on href pattern
-          // href like "../../posts/xyz/" -> "/posts/xyz/"
+          // Extract post name from href using regex
           const match = href.match(/posts\/([^/]+)/);
           console.log('match:', match);
           if (match) {
-            window.location.href = '/posts/' + match[1] + '/';
-            console.log('navigating to:', '/posts/' + match[1] + '/');
+            // Build absolute URL from origin to avoid any relative path issues
+            const targetPath = '/posts/' + match[1] + '/';
+            window.location.href = window.location.origin + targetPath;
+            console.log('navigating to:', window.location.origin + targetPath);
             return;
           }
         }
