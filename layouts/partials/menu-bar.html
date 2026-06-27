@@ -15,10 +15,6 @@
           <span>Home</span>
           <span class="menu-shortcut">g h</span>
         </a>
-        <a href="{{ "/post/" | relURL }}" class="menu-dropdown-item" role="menuitem">
-          <span>All Posts</span>
-          <span class="menu-shortcut">g p</span>
-        </a>
         {{ with .OutputFormats.Get "RSS" -}}
         <div class="menu-separator" role="separator"></div>
         <a href="{{ .RelPermalink }}" class="menu-dropdown-item" role="menuitem" target="_blank">

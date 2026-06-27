@@ -655,7 +655,6 @@
 
     const sequences = {
       'gh': () => { window.location.href = '/'; },
-      'gp': () => { window.location.href = '/post/'; },
       'gg': () => { 
         if (focusedBuffer === 'list') {
           updateSelection(0);
